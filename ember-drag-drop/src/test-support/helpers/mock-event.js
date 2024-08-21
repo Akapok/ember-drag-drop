@@ -44,8 +44,11 @@ export default class MockEvent {
 }
 
 export function createDomEvent(type) {
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent(type, true, true, null);
+  let event = new CustomEvent(type, {
+    bubbles: true,
+    cancelable: true,
+    detail: null
+  });
   event.dataTransfer = new DataTransfer();
   return event;
 }
