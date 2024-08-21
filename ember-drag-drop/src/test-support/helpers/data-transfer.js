@@ -25,8 +25,11 @@ c.reopenClass({
   },
 
   createDomEvent: function(type) {
-    var event = document.createEvent("CustomEvent");
-    event.initCustomEvent(type, true, true, null);
+    let event = new CustomEvent(type, {
+      bubbles: true,
+      cancelable: true,
+      detail: null
+    });
     event.dataTransfer = {
       data: {},
       setData: function(type, val){
